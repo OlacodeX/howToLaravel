@@ -14,6 +14,17 @@ class Comment extends Model
     protected $table = "comments";
 
     /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+    */
+    protected $casts = [
+        'created_at' => 'datetime',
+        'deleted_at' => 'datetime',
+        'updated_at' => 'datetime',
+    ];
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
