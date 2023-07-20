@@ -20,3 +20,14 @@ Route::get('/welcome', function () {
 });
 Route::get('/', Home::class);
 Route::get('/tutorials/{slug}', ShowTutorial::class);
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+});
+
