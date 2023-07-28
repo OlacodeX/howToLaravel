@@ -47,10 +47,15 @@ class Tutorial extends Model
     {
         return Attribute::make(
             get: fn ($value) => Carbon::parse($value)->toFormattedDateString(),
-            // set: fn ($value) => $value * 100,
         );
     }
 
+    protected function banner(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => config('services.helpers.base_path')."/storage/images"."/".$value,
+        );
+    }
     /**
      * Return the sluggable configuration array for this model.
      *
@@ -72,7 +77,7 @@ class Tutorial extends Model
      */
     public function author(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'author_id');
     }
 
     /**

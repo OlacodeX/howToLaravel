@@ -1,6 +1,6 @@
-<div class="container bg-hero mx-auto px-40 overflow-hidden h-[800px]  bg-gray-100 mt-14">
+<div class="container bg-hero mx-auto px-20 overflow-hidden h-[800px] bg-gray-100 mt-14">
     <div class="grid grid-cols-2 gap-x-40 px-8 pt-24 ">
-        <div class="pr-24">
+        <div class="pr-12">
             {{ $logo }}
             @if (request()->is('register'))
                 <p class="pr-24 text-lg">Let's get you started with an account!</p>
