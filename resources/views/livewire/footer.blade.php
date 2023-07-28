@@ -1,4 +1,4 @@
-<div class="text-center">
+<div class="text-center mt-48">
     <a href="#" class="flex items-center justify-center mb-5 text-2xl font-semibold text-gray-900">
         <img src="https://www.svgrepo.com/show/499962/music.svg" class="h-12 mr-3 sm:h-9" alt="H2Laravel">
 		How To Laravel

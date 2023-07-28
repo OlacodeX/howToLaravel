@@ -1,8 +1,8 @@
 import './bootstrap';
-
+import Turbolinks from 'turbolinks';
 import Alpine from 'alpinejs';
 import focus from '@alpinejs/focus';
-import Turbolinks from 'turbolinks';
+import 'flowbite';
 
 Turbolinks.start();
 window.Alpine = Alpine;

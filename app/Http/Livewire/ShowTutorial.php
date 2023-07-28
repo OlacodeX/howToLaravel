@@ -9,25 +9,15 @@ use PhpParser\Node\Stmt\TryCatch;
 
 class ShowTutorial extends Component
 { 
-    // public $selectedTutorial;
     public $tutorial;
  
-    // protected $listeners = [
-    //     'copy' => 'copy',
-    // ];
-
     public function mount($slug){
         try {
-            $this->tutorial = Tutorial::where('slug', $slug)->with('comments')->firstorFail();
+            $this->tutorial = Tutorial::where('slug', $slug)->with(['author'])->firstorFail();
         } catch (MethodNotFoundException $exception) {
             // return view('livewire.home');
         }
     }
-
-    // public function copy($tutorial)
-    // {
-    //     $this->tutorial = $tutorial;
-    // }
 
     public function render()
     {

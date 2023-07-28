@@ -7,12 +7,6 @@ use App\Models\Tutorial;
 
 class Tutorials extends Component
 {
-    public $tid;
-
-    public function tut(Tutorial $tutorial)
-    {
-        dd($tutorial);
-    }
     public function render()
     {
         return view('livewire.tutorials', [

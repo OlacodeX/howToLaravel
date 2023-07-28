@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\CreateTutorial;
 use App\Http\Livewire\Home;
 use App\Http\Livewire\ShowTutorial;
 use Illuminate\Support\Facades\Route;
@@ -29,5 +30,8 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+    Route::get('/tutorial/create', CreateTutorial::class)->name('create-tutorial');
 });
+
+Route::post('/tinymce/upload', 'App\Http\Controllers\TinyMCEController@upload')->name('ckeditor.image-upload');
 

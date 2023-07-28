@@ -9,6 +9,7 @@ export default {
         './vendor/laravel/jetstream/**/*.blade.php',
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
+        './node_modules/flowbite/**/*.js',
     ],
 
     theme: {
@@ -20,7 +21,14 @@ export default {
         container: {
             center: true,
           },
+          colors: {
+            'purple': 'rgb(107 33 168)',
+          },
     },
 
-    plugins: [forms, typography],
+    plugins: [
+        forms, 
+        typography,
+        require('flowbite/plugin'),
+    ],
 };
