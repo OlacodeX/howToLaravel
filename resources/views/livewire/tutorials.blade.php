@@ -1,8 +1,5 @@
 
-{{-- @if ($loading)
-    @livewire('tutorial-skeleton')
-    <h1>loaadi</h1>
-@endif --}}
+@section('title') {{ 'Tutorials' }} @endsection
 <div class="mt-2">
     @if (count($tutorials) > 0)
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mt-2">

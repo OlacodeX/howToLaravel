@@ -34,5 +34,10 @@ return [
     'helpers' => [
         'base_path' => env('APP_URL'),
     ],
+    
+    'firebase' => [
+        'project_id' => env('FIREBASE_PROJECT_ID', "laravel-lab-ab9f3"),
+        'environment' => env('FIREBASE_PROJECT_ENVIRONMENT', "development"),
+    ],
 
 ];

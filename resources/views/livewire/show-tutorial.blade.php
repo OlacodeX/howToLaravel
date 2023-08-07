@@ -4,9 +4,12 @@
         line-height: 28px
     }
 </style>
+@section('title') {{$tutorial->topic}} @endsection
+@section('meta_keywords') {{ implode(', ',$tutorial->tags) }}@endsection
+@section('meta_description') {!! Str::limit($tutorial->body, 200) !!}@endsection
 <div class="hero-section absolute left-0 right-0 bg-cover h-80" style="background-image: url({{ $tutorial->banner }}); box-shadow: 0px 0px 0px 0px #00000040,inset 0 0 0 1000px rgba(0,0,0,.5)">
     <div class="pt-40 pb-10 items-start container mx-auto">
-        <h1 class="text-white leading-4 text-3xl font-extrabold">{{ $tutorial->topic }}</h1>
+        <h1 class="text-white leading-4 text-2xl font-extrabold">{{ $tutorial->topic }}</h1>
         <p class="text-white pt-4">
             @foreach ($tutorial->tags as $tag)
                 <span class="bg-purple-100 text-purple-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded border border-purple-400">{{ $tag }}</span>

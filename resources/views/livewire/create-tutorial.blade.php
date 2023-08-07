@@ -1,18 +1,18 @@
- 
- <x-tutorial-form-card>
-    {{-- <x-validation-errors class="mb-4" /> --}}
-    @if (session()->has('message'))
-        <div class="p-3 bg-green-300 text-green-800 rounded shadow-sm">
-            {{ session('message') }}
-        </div>
-    @endif
+
+@section('title') {{ 'Create Tutorial' }} @endsection
+<x-tutorial-form-card>
+    <tutorial-form-card-heading>
+       <h3 class="lg:text-6xl md:text-4xl sm:text-4xl font-black sm:pt-4 lg:pt-8 md:pt-8 pb-4">
+          Create New Tutorial
+       </h3>
+    <tutorial-form-card-heading />
     <form wire:submit.prevent="addTutorial">
         <div>
-            <x-input class="mt-1 w-full bg-gray-50 rounded-none py-4 border-none shadow text-gray-900 text-sm" type="text" wire:model.lazy="topic" placeholder="Tutorial topic" />
+            <x-input class="mt-1 w-full bg-gray-50 rounded-none py-4 border-none shadow text-gray-900 text-sm" type="text" wire:model.defer="topic" placeholder="Tutorial topic" />
             @error('topic') <span class="text-red-500 text-xs justify-start flex">{{ $message }}</span> @enderror
         </div>
         <div class="mt-4">
-                <x-input id="tags" class="mt-1 w-full bg-gray-50 rounded-none py-4 border-none shadow text-gray-900 text-sm" type="text" wire:model="tagString" placeholder="Tutorial tags" wire:change="handleTags"/>
+                <x-input id="tags" class="mt-1 w-full bg-gray-50 rounded-none py-4 border-none shadow text-gray-900 text-sm" type="text" wire:model="tagString" placeholder="Tutorial tags" wire:change.defer="handleTags"/>
                 @error('tagString') <span class="text-red-500 text-xs justify-start flex">{{ $message }}</span> @enderror
         </div>
         <div class="mt-4" wire:ignore>
@@ -21,6 +21,9 @@
         </div>
 
         <div class="mt-4">
+            @if ($image) 
+                <img class="h-auto max-w-full py-4" src="{{ $image->temporaryUrl() }}" alt="Tutorial banner">
+            @endif
             <div class="flex items-center justify-center w-full">
                 <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
                     <div class="flex flex-col items-center justify-center pt-5 pb-6">
@@ -34,33 +37,30 @@
                 </label>
             </div> 
             @error('image') <span class="text-red-500 text-xs justify-start flex">{{ $message }}</span> @enderror
-            
-            @if($image)
-            <p>{{ $image }}</p>
-            {{-- <img src={{$image}} class="w-1/2" /> --}}
-            @endif
         </div>
-        <div class="flex items-center justify-end mt-4" wire.loading.remove >
+        <div class="flex items-center justify-end mt-4">
         
             <div wire:loading.delay>
-                <button class="disabled ml-4 px-12 py-4 text-xs inline-flex items-center bg-gray-800 border border-transparent rounded-md font-semibold text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150 opacity-50 cursor-not-allowed">
+                <button class="disabled ml-4 px-12 py-4 text-xs inline-flex items-center bg-purple-800 border border-transparent rounded-md font-semibold text-white uppercase tracking-widest transition ease-in-out duration-150 opacity-50 cursor-not-allowed">
                     Preparing Data....
                 </button>
             </div>
             <div wire:loading.remove>
-                <x-button class="ml-4 px-12 py-4 text-2xl">
+                <x-button class="ml-4 px-12 py-4 text-2xl" wire:click="saveDraft">
+                    Save as Draft
+                </x-button>
+                <x-button class="ml-4 px-12 py-4 text-2xl" wire:click="saveActive">
                     Create Tutorial
                 </x-button>
             </div>
         </div>
     </form>
-    </x-tutorial-form-card>
-    @push('scripts')
+</x-tutorial-form-card>
+@push('scripts')
 
     <script>
         const useDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
         const isSmallScreen = window.matchMedia('(max-width: 1023.5px)').matches;
-
         tinymce.init({
         selector: 'textarea#body',
         plugins: 'preview importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen image link media template codesample table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount help charmap quickbars emoticons',
@@ -130,6 +130,6 @@
         codesample_content_css: "http://ourcodeworld.com/material/css/prism.css",
         });
     </script>
-    @endpush
+@endpush
 
     

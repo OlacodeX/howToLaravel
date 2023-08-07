@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\Status;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
@@ -10,10 +11,11 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Tutorial extends Model
 {
-    use HasFactory, HasUuids, Sluggable;
+    use HasFactory, HasUuids, Sluggable, SoftDeletes;
 
     protected $table = "tutorials";
 
@@ -24,6 +26,7 @@ class Tutorial extends Model
     */
     protected $casts = [
         'tags' => 'array',
+        'status' => Status::class,
         'created_at' => 'datetime',
         'deleted_at' => 'datetime',
         'updated_at' => 'datetime',
@@ -53,7 +56,8 @@ class Tutorial extends Model
     protected function banner(): Attribute
     {
         return Attribute::make(
-            get: fn ($value) => config('services.helpers.base_path')."/storage/images"."/".$value,
+            get: fn ($value) => $value,
+            // get: fn ($value) => config('services.helpers.base_path')."/storage/images"."/".$value,
         );
     }
     /**

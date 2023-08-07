@@ -21,6 +21,11 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
             'photo' => ['nullable', 'mimes:jpg,jpeg,png', 'max:1024'],
+            'pro_brief' => ['nullable', 'string', 'max:600'],
+            'pro_title' => ['nullable', 'string', 'max:50'],
+            'socials.Github' => ['nullable', 'string'],
+            'socials.Twitter' => ['nullable', 'string', 'max:50'],
+            'socials.LinkedIn' => ['nullable', 'string', 'max:50'],
         ])->validateWithBag('updateProfileInformation');
 
         if (isset($input['photo'])) {
@@ -34,6 +39,9 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             $user->forceFill([
                 'name' => $input['name'],
                 'email' => $input['email'],
+                'pro_brief' => $input['pro_brief'],
+                'pro_title' => $input['pro_title'],
+                'socials' => $input['socials'],
             ])->save();
         }
     }
@@ -48,6 +56,9 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
         $user->forceFill([
             'name' => $input['name'],
             'email' => $input['email'],
+            'pro_brief' => $input['bio'],
+            'pro_title' => $input['pro_title'],
+            'socials' => $input['socials'],
             'email_verified_at' => null,
         ])->save();
 

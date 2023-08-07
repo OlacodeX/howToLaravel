@@ -15,9 +15,9 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->string('topic', 100);
             $table->string('slug');
-            $table->text('body');
+            $table->text('body')->nullable();
             $table->foreignUuid('author_id')->constrained('users');
-            $table->string('banner');
+            $table->string('banner')->nullable();
             $table->longText('tags')->nullable();
             $table->timestamps();
             $table->softDeletes();
