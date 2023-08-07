@@ -10,7 +10,7 @@ class Tutorials extends Component
     public function render()
     {
         return view('livewire.tutorials', [
-            'tutorials' => Tutorial::latest()->get(),
+            'tutorials' => Tutorial::where('status', 0)->latest()->get(),
         ]);
     }
 }
