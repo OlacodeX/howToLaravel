@@ -2,7 +2,7 @@
 @section('title') {{ 'Create Tutorial' }} @endsection
 <x-tutorial-form-card>
     <tutorial-form-card-heading>
-       <h3 class="lg:text-6xl md:text-4xl sm:text-4xl font-black sm:pt-4 lg:pt-8 md:pt-8 pb-4">
+       <h3 class="text-2xl sm:text-6xl font-black pt-4 sm:pt-8 pb-4">
           Create New Tutorial
        </h3>
     <tutorial-form-card-heading />
@@ -41,15 +41,15 @@
         <div class="flex items-center justify-end mt-4">
         
             <div wire:loading.delay>
-                <button class="disabled ml-4 px-12 py-4 text-xs inline-flex items-center bg-purple-800 border border-transparent rounded-md font-semibold text-white uppercase tracking-widest transition ease-in-out duration-150 opacity-50 cursor-not-allowed">
+                <button class="disabled ml-1 sm:ml-4 px-1 sm:px-12 py-4 text-xs inline-flex items-center bg-purple-800 border border-transparent rounded-md font-semibold text-white uppercase tracking-widest transition ease-in-out duration-150 opacity-50 cursor-not-allowed">
                     Preparing Data....
                 </button>
             </div>
-            <div wire:loading.remove>
-                <x-button class="ml-4 px-12 py-4 text-2xl" wire:click="saveDraft">
+            <div wire:loading.remove class="flex items-center justify-end mt-4 sm:flex-none">
+                <x-button class="ml-1 sm:ml-4 px-1 sm:px-12 py-4 text-xs sm:text-xl" wire:click="saveDraft">
                     Save as Draft
                 </x-button>
-                <x-button class="ml-4 px-12 py-4 text-2xl" wire:click="saveActive">
+                <x-button class="ml-1 sm:ml-4 px-1 sm:px-12 py-4 text-xs sm:text-xl" wire:click="saveActive">
                     Create Tutorial
                 </x-button>
             </div>

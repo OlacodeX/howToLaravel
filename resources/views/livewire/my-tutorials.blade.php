@@ -61,7 +61,7 @@
                                 </td>
                                 <td class="px-2 py-4">
                                     @foreach ($tutorial->tags as $tag)
-                                        <span class="bg-purple-100 text-purple-800 mb-2 text-xs font-medium mr-1 px-2.5 py-0.5 rounded border border-purple-400">{{ $tag }}</span>
+                                        <span class="whitespace-nowrap bg-purple-100 text-purple-800 text-xs font-medium mr-0 sm:mr-1 px-2.5 py-0.5 rounded border border-purple-400">{{ $tag }}</span>
                                     @endforeach
                                 </td>
                                 <td class="px-2 py-4">
