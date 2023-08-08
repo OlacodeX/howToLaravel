@@ -48,7 +48,7 @@
                 </button>
             </div>
             <div wire:loading.remove>
-                <x-button class="ml-4 px-12 py-4 text-2xl">
+                <x-button class="ml-1 sm:ml-4 px-1 sm:px-12 py-4 text-xs sm:text-xl">
                     Update Tutorial
                 </x-button>
             </div>

@@ -8,8 +8,8 @@
 @section('meta_keywords') {{ implode(', ',$tutorial->tags) }}@endsection
 @section('meta_description') {!! Str::limit($tutorial->body, 200) !!}@endsection
 <div class="hero-section absolute left-0 right-0 bg-cover h-80" style="background-image: url({{ $tutorial->banner }}); box-shadow: 0px 0px 0px 0px #00000040,inset 0 0 0 1000px rgba(0,0,0,.5)">
-    <div class="pt-40 pb-10 items-start container mx-auto">
-        <h1 class="text-white leading-4 text-2xl font-extrabold">{{ $tutorial->topic }}</h1>
+    <div class="pt-20 sm:pt-36 pb-10 px-4 sm:px-0 items-start container mx-auto">
+        <h1 class="text-white leading-6 text-2xl font-extrabold">{{ $tutorial->topic }}</h1>
         <p class="text-white pt-4">
             @foreach ($tutorial->tags as $tag)
                 <span class="bg-purple-100 text-purple-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded border border-purple-400">{{ $tag }}</span>
@@ -17,7 +17,7 @@
         </p>
     </div>
 </div>
-<div class="content relative top-60 bg-white from-gray-700/50 via-transparent rounded-lg shadow-2xl shadow-gray-500/20 container mx-auto left-0 right-0 pb-16">
+<div class="content relative top-60 bg-white from-gray-700/50 via-transparent rounded-none sm:rounded-lg shadow-2xl shadow-gray-500/20 container mx-auto left-0 right-0 pb-16">
 
     <main class="px-8 py-4">
         <div class="flex justify-between text-purple-800">
@@ -29,10 +29,8 @@
                 <button class="pr-4" id="link" onclick="copyToClipboard('{{ config('services.helpers.base_path').'/'.'tutorials/'.$tutorial->slug }}')"><img src="/image/icons/share.svg" alt=""></button>
             </p>
         </div>
-        <article class="pt-6">
-            <p class="">
-                {!! $tutorial->body !!}
-            </p>
+        <article class="pt-6 text-justify">
+            {!! $tutorial->body !!}
         </article>
         <div class="inline-flex items-center justify-center w-full">
             <hr class="w-[100rem] h-1 my-8 bg-gray-200 border-0 rounded">
